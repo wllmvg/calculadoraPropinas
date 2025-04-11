@@ -36,88 +36,90 @@ def salir_app():
 
 # Ventana principal
 ventana = tk.Tk()
-ventana.title("🧮 Calculadora de Propinas")
-ventana.geometry("400x500")
-ventana.configure(bg="#ffffff")
+ventana.title("Calculadora de Propinas")
+ventana.geometry("360x440")
+ventana.configure(bg="#f4f4f4")
 ventana.resizable(False, False)
 
-# Fuente (Poppins o Arial como backup)
-try:
-    poppins_font = ("Poppins", 12)
-except:
-    poppins_font = ("Arial", 12)
+# Fuente moderna (Arial como respaldo)
+fuente_titulo = ("Segoe UI", 18, "bold")
+fuente_normal = ("Segoe UI", 12)
 
-# Estilos generales
+# Entradas
 entrada_estilo = {
-    "font": poppins_font,
-    "bg": "#f7f7f7",
-    "bd": 2,
-    "relief": "solid",
+    "font": fuente_normal,
+    "bg": "#ffffff",
+    "bd": 1,
+    "relief": "flat",
     "highlightthickness": 1,
     "highlightbackground": "#cccccc",
 }
 
+# Botones
 boton_estilo = {
-    "font": poppins_font,
-    "fg": "white",
-    "width": 12,
-    "height": 2,
+    "font": fuente_normal,
+    "fg": "#ffffff",
+    "width": 10,
+    "height": 1,
     "bd": 0,
     "cursor": "hand2",
+    "relief": "flat",
 }
 
 # Título
-titulo = tk.Label(ventana, text="Calculadora de Propinas", font=("Poppins", 18, "bold"), bg="#ffffff")
+titulo = tk.Label(ventana, text="💡 Calculadora de Propinas", font=fuente_titulo, bg="#f4f4f4", fg="#333333")
 titulo.pack(pady=20)
 
 # Monto
-label_monto = tk.Label(ventana, text="Monto de la cuenta ($):", font=poppins_font, bg="#ffffff")
-label_monto.pack(pady=5)
+label_monto = tk.Label(ventana, text="Monto de la cuenta ($):", font=fuente_normal, bg="#f4f4f4")
+label_monto.pack(anchor="w", padx=40)
 entry_monto = tk.Entry(ventana, **entrada_estilo)
-entry_monto.pack(pady=5, ipadx=10, ipady=5)
+entry_monto.pack(padx=40, pady=5, ipady=6, fill="x")
+
 
 # Porcentaje
-label_porcentaje = tk.Label(ventana, text="Porcentaje de propina (%):", font=poppins_font, bg="#ffffff")
-label_porcentaje.pack(pady=5)
+label_porcentaje = tk.Label(ventana, text="Porcentaje de propina (%):", font=fuente_normal, bg="#f4f4f4")
+label_porcentaje.pack(anchor="w", padx=40, pady=(15, 0))
 entry_porcentaje = tk.Entry(ventana, **entrada_estilo)
-entry_porcentaje.pack(pady=5, ipadx=10, ipady=5)
+entry_porcentaje.pack(padx=40, pady=5, ipady=6, fill="x")
+
+
+entry_monto.bind("<Return>", lambda event: calcular_propina())
+entry_porcentaje.bind("<Return>", lambda event: calcular_propina())
 
 # Botones
-frame_botones = tk.Frame(ventana, bg="#ffffff")
-frame_botones.pack(pady=20)
+frame_botones = tk.Frame(ventana, bg="#f4f4f4")
+frame_botones.pack(pady=25)
 
-boton_calcular = tk.Button(
+tk.Button(
     frame_botones,
     text="Calcular",
     command=calcular_propina,
-    bg="#4CAF50",
-    activebackground="#45a049",
+    bg="#6c63ff",
+    activebackground="#5a54d6",
     **boton_estilo
-)
-boton_calcular.grid(row=0, column=0, padx=10)
+).grid(row=0, column=0, padx=5)
 
-boton_limpiar = tk.Button(
+tk.Button(
     frame_botones,
     text="Limpiar",
     command=limpiar_campos,
-    bg="#2196F3",
-    activebackground="#1e88e5",
+    bg="#00bcd4",
+    activebackground="#00a2b4",
     **boton_estilo
-)
-boton_limpiar.grid(row=0, column=1, padx=10)
+).grid(row=0, column=1, padx=5)
 
-boton_salir = tk.Button(
+tk.Button(
     frame_botones,
     text="Salir",
     command=salir_app,
     bg="#f44336",
-    activebackground="#e53935",
+    activebackground="#d32f2f",
     **boton_estilo
-)
-boton_salir.grid(row=0, column=2, padx=10)
+).grid(row=0, column=2, padx=5)
 
 # Resultado
-label_resultado = tk.Label(ventana, text="", font=("Poppins", 14), bg="#ffffff", fg="#333333")
+label_resultado = tk.Label(ventana, text="", font=("Segoe UI", 13), bg="#f4f4f4", fg="#333333", justify="center")
 label_resultado.pack(pady=20)
 
 # Ejecutar
