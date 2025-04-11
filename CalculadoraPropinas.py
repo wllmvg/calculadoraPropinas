@@ -91,6 +91,7 @@ entry_porcentaje.bind("<Return>", lambda event: calcular_propina())
 frame_botones = tk.Frame(ventana, bg="#f4f4f4")
 frame_botones.pack(pady=25)
 
+# Botón "Calcular" en la fila 0 (solo)
 tk.Button(
     frame_botones,
     text="Calcular",
@@ -98,8 +99,9 @@ tk.Button(
     bg="#6c63ff",
     activebackground="#5a54d6",
     **boton_estilo
-).grid(row=0, column=0, padx=5)
+).grid(row=0, column=0, columnspan=2, pady=(0, 10))
 
+# Botón "Limpiar" en la fila 1, columna 0
 tk.Button(
     frame_botones,
     text="Limpiar",
@@ -107,8 +109,9 @@ tk.Button(
     bg="#00bcd4",
     activebackground="#00a2b4",
     **boton_estilo
-).grid(row=0, column=1, padx=5)
+).grid(row=1, column=0, padx=5)
 
+# Botón "Salir" en la fila 1, columna 1
 tk.Button(
     frame_botones,
     text="Salir",
@@ -116,7 +119,8 @@ tk.Button(
     bg="#f44336",
     activebackground="#d32f2f",
     **boton_estilo
-).grid(row=0, column=2, padx=5)
+).grid(row=1, column=1, padx=5)
+
 
 # Resultado
 label_resultado = tk.Label(ventana, text="", font=("Segoe UI", 13), bg="#f4f4f4", fg="#333333", justify="center")
