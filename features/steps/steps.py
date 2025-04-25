@@ -3,7 +3,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
 from behave import given, when, then
-from tests import calculadora
+from tests.calculadora import calcular_propina_y_total
 
 @given('el monto de la cuenta es {monto}')
 def step_monto(context, monto):
@@ -15,7 +15,7 @@ def step_porcentaje(context, porcentaje):
 
 @when('calculo la propina')
 def step_calcular(context):
-    context.propina, context.total = calculadora(context.monto, context.porcentaje)
+    context.propina, context.total = calcular_propina_y_total(context.monto, context.porcentaje)
 
 @then('el resultado debe ser {esperado}')
 def step_verificar(context, esperado):
